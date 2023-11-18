@@ -1,24 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import { Col, Divider, Row } from "antd";
+import SearchBoxComponent from "./components/SearchBoxComponent";
+import JobWidgetsComponent from "./components/JobWidgetsComponent";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Row className="mt-5 flex justify-center">
+        <Col span={18}>
+          <div className="text-4xl mb-6">Enter the job you are looking for: </div>
+          <SearchBoxComponent />
+          <Divider />
+          <JobWidgetsComponent />
+        </Col>
+    </Row>
   );
 }
 
