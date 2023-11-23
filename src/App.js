@@ -1,18 +1,33 @@
-import { Col, Divider, Row } from "antd";
-import SearchBoxComponent from "./components/SearchBoxComponent";
-import JobWidgetsComponent from "./components/JobWidgetsComponent";
+import {useState} from "react";
+import SplashScreen from "./components/SplashScreen";
+import HomeScreen from "./components/HomeScreen";
+import SearchResult from "./components/SearchResult";
 
-function App() {
+const App=() => {
+  const [clicked,setClicked]=useState(false);
+  const [searchQuery,setSearchQuery]=useState('');
+
   return (
-    <Row className="mt-5 flex justify-center">
-        <Col span={18}>
-          <div className="text-4xl mb-6">Enter the job you are looking for: </div>
-          <SearchBoxComponent />
-          <Divider />
-          <JobWidgetsComponent />
-        </Col>
-    </Row>
+    <div>
+      <SplashScreen />
+      <div className="search-engine-component">
+
+        {!clicked
+          ?
+          <HomeScreen
+            setClicked={setClicked}
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+          />:
+          <SearchResult
+            setClicked={setClicked}
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+          />}
+      </div>
+    </div>
   );
-}
+
+};
 
 export default App;
