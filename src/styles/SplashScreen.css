@@ -20,8 +20,8 @@
   animation-fill-mode: forwards; /* Keeps the final state of the animation */
 }
 .splash-screen-image {
-  width: 60%;
-  height: 60%;
+  width: 48%;
+  height: 48%;
   object-fit: contain;
 }
 

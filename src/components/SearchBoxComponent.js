@@ -1,5 +1,6 @@
 import React,{useEffect,useState} from "react";
 import {Select} from "antd";
+import '../styles/search.css'
 
 const debounce=(func,delay) => {
   let timeoutId;
@@ -75,14 +76,24 @@ const SearchBoxComponent=(props) => {
   console.log(searchQuery,setSearchQuery)
   return (
     <>
-      <SearchInput
+      {/* <SearchInput
         placeholder="Enter the Job you are searching for"
         className="w-100"
         style={{width: `${props.width}`}}
         setClicked={props.setClicked}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
-      />
+      /> */}
+
+      <div className="search-bar-container">
+        <input
+          type="text"
+          // value={query}
+          // onChange={handleChange}
+          placeholder="Search..."
+          className={true? 'expanded':''}
+        />
+      </div>
     </>
   )
 };

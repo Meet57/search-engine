@@ -1,7 +1,8 @@
 import React from 'react';
 import {Layout,Input} from 'antd';
 import SearchBoxComponent from "./SearchBoxComponent";
-import splash4 from '../assets/images/splash4.jpeg';
+import splash4 from '../assets/images/logo.png';
+import SearchBar from './SearchBar';
 const {Content}=Layout;
 
 const HomeScreen=(props) => {
@@ -12,14 +13,20 @@ const HomeScreen=(props) => {
                 <img
                     src={splash4}
                     alt="Google Logo"
-                    style={{maxWidth: '500px'}}
+                    style={{maxWidth: '700px'}}
                 />
-                <SearchBoxComponent
-                    width="60%"
+                <SearchBar
+                    clicked={props.clicked}
                     setClicked={props.setClicked}
                     searchQuery={searchQuery}
                     setSearchQuery={setSearchQuery}
                 />
+                {/* <SearchBoxComponent
+                    width="60%"
+                    setClicked={props.setClicked}
+                    searchQuery={searchQuery}
+                    setSearchQuery={setSearchQuery}
+                /> */}
             </Content>
         </Layout>
     );
