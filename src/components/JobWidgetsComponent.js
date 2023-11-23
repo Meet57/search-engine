@@ -72,8 +72,9 @@ const JobWidgetsComponent=() => {
         style={{marginTop: '20px',textAlign: 'center'}}
       />
 
+      {/* TODO change the title of the drawer */}
       <Drawer
-        title={`${size} Drawer`}
+        title={`put prop here for the job title`}
         placement="right"
         size={size}
         onClose={onClose}
