@@ -1,47 +1,53 @@
-import React, { useState } from "react";
-import { Select } from "antd";
+import React,{useEffect,useState} from "react";
+import {Select} from "antd";
+import '../styles/search.css'
 
-const debounce = (func, delay) => {
+const debounce=(func,delay) => {
   let timeoutId;
-  return function (...args) {
-    if (timeoutId) {
+  return function(...args) {
+    if(timeoutId) {
       clearTimeout(timeoutId);
     }
-    timeoutId = setTimeout(() => {
+    timeoutId=setTimeout(() => {
       func(...args);
-    }, delay);
+    },delay);
   };
 };
 
-const fetch = (value, callback) => {
-  console.log(value);
-
-  const staticData = [
-    { value: "Software Engineer", text: "Software Engineer" },
-    { value: "Data Scientist", text: "Data Scientist" },
-    { value: "UX Designer", text: "UX Designer" },
-    { value: "Product Manager", text: "Product Manager" },
-    { value: "Marketing Specialist", text: "Marketing Specialist" },
+const fetch=(value,callback) => {
+  const staticData=[
+    {value: "Software Engineer",text: "Software Engineer"},
+    {value: "Data Scientist",text: "Data Scientist"},
+    {value: "UX Designer",text: "UX Designer"},
+    {value: "Product Manager",text: "Product Manager"},
+    {value: "Marketing Specialist",text: "Marketing Specialist"},
   ];
 
   setTimeout(() => {
     callback(staticData);
-  }, 300);
+  },300);
 };
 
-const SearchInput = (props) => {
-  const [data, setData] = useState([]);
-  const [value, setValue] = useState();
+const SearchInput=(props) => {
+  const [data,setData]=useState([]);
+  const [value,setValue]=useState(props.searchQuery);
 
   // Debounce the handleSearch function
-  const debouncedHandleSearch = debounce((newValue) => {
-    fetch(newValue, setData);
-    setValue(newValue)
-  }, 1000);
+  const debouncedHandleSearch=debounce((newValue) => {
+    fetch(newValue,setData);
+    setValue(newValue);
+    props.setSearchQuery(newValue);
+  },1000);
 
-  const handleChange = (newValue) => {
+  const handleChange=(newValue) => {
     setValue(newValue);
     console.log(newValue);
+  };
+
+  const handleSelect=(newValue) => {
+    props.setSearchQuery(newValue);
+    setValue(newValue);
+    props.setClicked(true); // Set clicked to true when a suggestion is selected
   };
 
   return (
@@ -49,14 +55,15 @@ const SearchInput = (props) => {
       showSearch
       size="large"
       value={value}
-      placeholder={props.placeholder}
+      placeholder={value===""? props.placeholder:undefined} // Use undefined instead of null
       style={props.style}
       allowClear={true}
       defaultActiveFirstOption={false}
       onSearch={debouncedHandleSearch}
       onChange={handleChange}
+      onSelect={handleSelect}
       notFoundContent={null}
-      options={(data || []).map((d) => ({
+      options={(data||[]).map((d) => ({
         value: d.value,
         label: d.text,
       }))}
@@ -64,14 +71,31 @@ const SearchInput = (props) => {
   );
 };
 
-const SearchBoxComponent = () => (
-  <>
-    <SearchInput
-      placeholder="Enter the Job you are searching for"
-      className="w-100"
-      style={{ width: "100%" }}
-    />
-  </>
-);
+const SearchBoxComponent=(props) => {
+  const {searchQuery,setSearchQuery}=props;
+  console.log(searchQuery,setSearchQuery)
+  return (
+    <>
+      {/* <SearchInput
+        placeholder="Enter the Job you are searching for"
+        className="w-100"
+        style={{width: `${props.width}`}}
+        setClicked={props.setClicked}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+      /> */}
+
+      <div className="search-bar-container">
+        <input
+          type="text"
+          // value={query}
+          // onChange={handleChange}
+          placeholder="Search..."
+          className={true? 'expanded':''}
+        />
+      </div>
+    </>
+  )
+};
 
 export default SearchBoxComponent;
