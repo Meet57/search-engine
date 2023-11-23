@@ -80,6 +80,7 @@ const JobWidgetsComponent=() => {
         style={{marginTop: '20px',textAlign: 'center'}}
       />
 
+      {/* TODO change the title of the drawer */}
       <Drawer
         title={drawerData.title}
         placement="right"
