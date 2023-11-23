@@ -1,0 +1,44 @@
+/* SplashScreen.css */
+
+.splash-screen {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: white; /* Set the background color explicitly */
+  display: flex;
+  margin-top: 160px;
+  justify-content: center;
+  /* align-items: center; */
+  /* animation: slideInRight 1s ease-in-out; */
+  z-index: 1000; /* Adjust the z-index as needed */
+}
+
+.splash-screen.hidden {
+  animation: slideOutLeft 1s ease-in-out;
+  animation-fill-mode: forwards; /* Keeps the final state of the animation */
+}
+.splash-screen-image {
+  width: 48%;
+  height: 48%;
+  object-fit: contain;
+}
+
+@keyframes slideInRight {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
