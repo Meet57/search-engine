@@ -3,9 +3,14 @@ import React from "react";
 import {Button} from 'antd';
 
 const JobCardComponent=(props) => {
+
+  const { id, title, description, link, showLargeDrawer } = props;
   return (
-    <Card className="my-3" title={props.title} bordered={false} style={{width: "100%"}} extra={<Button onClick={props.showLargeDrawer}>More Info</Button>} >
-      <p>{props.description}</p>
+    <Card className="my-3" title={title} bordered={false} style={{width: "100%",
+
+    }} 
+    extra={<Button onClick={() => showLargeDrawer(props)}>View More</Button>} >
+      <p className="description">{description}</p>
     </Card>
   );
 };
