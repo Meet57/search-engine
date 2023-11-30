@@ -1,0 +1,14 @@
+.spell-check-div{
+    width: 100%;
+    background-color:#fff1ef;
+    border :1px solid #ffccc6;
+    border-radius:8px;
+    padding: 10px;
+}
+
+.spellCheckSuggestion{
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline;
+    color: #2c7bfb;
+}

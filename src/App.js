@@ -1,33 +1,27 @@
 import {useState} from "react";
+import {Spin} from 'antd';
 import SplashScreen from "./components/SplashScreen";
 import HomeScreen from "./components/HomeScreen";
 import SearchResult from "./components/SearchResult";
+import './styles/app.css';
+import {useAppState} from './Context/GlobalContex';
 
 const App=() => {
-  const [clicked,setClicked]=useState(false);
-  const [searchQuery,setSearchQuery]=useState('');
+  const {searchedBefore,loadingJobs}=useAppState();
 
   return (
-    <div>
+    <div className="main-div" style={{backgroundColor: "#f5f5f5",minHeight: '100vh'}}>
       <SplashScreen />
       <div className="search-engine-component">
-
-        {!clicked
+        {!searchedBefore
           ?
-          <HomeScreen
-            setClicked={setClicked}
-            searchQuery={searchQuery}
-            setSearchQuery={setSearchQuery}
-          />:
-          <SearchResult
-            setClicked={setClicked}
-            searchQuery={searchQuery}
-            setSearchQuery={setSearchQuery}
-          />}
+          <HomeScreen />:
+          <SearchResult />
+        }
       </div>
+      <Spin spinning={loadingJobs} fullscreen />
     </div>
   );
-
 };
 
 export default App;
