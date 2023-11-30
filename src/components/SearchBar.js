@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react';
 import {message} from 'antd';
 import '../styles/SearchBar.css';
 import useDebounce from '../hooks/useDebounce';
+import searchIcon from '../assets/images/icons8-search.svg'
 import {useAppState} from '../Context/GlobalContex';
 
 const SearchBar=(props) => {
@@ -59,6 +60,7 @@ const SearchBar=(props) => {
                 throw new Error('Error checking spelling');
             }
             const spellCheckData=await spellCheckResponse.text();
+            console.log(searchQuery.toLowerCase().trim(),spellCheckData.toLowerCase().trim())
             if(searchQuery.toLowerCase().trim()!==spellCheckData.toLowerCase().trim()) {
                 setSpellCheckedSuggestion(spellCheckData);
             }
@@ -223,6 +225,7 @@ const SearchBar=(props) => {
     return (
         <div className="search-bar-container" style={{width: `${props.width}`}}>
             <div className="search-input-wrapper">
+                <img src={searchIcon} alt="" className='search-icon' />
                 <input
                     type="text"
                     value={searchQuery}

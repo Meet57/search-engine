@@ -68,7 +68,7 @@ const SearchResult=(props) => {
                         <img
                             src={splash4}
                             alt="Google Logo"
-                            style={{maxWidth: '250px',margin: "0 auto"}}
+                            style={{maxWidth: '250px',margin: "0 auto",cursor: "pointer"}}
                             onClick={() => setSearchedBefore(false)}
                         />
                         <SearchBar
@@ -81,7 +81,14 @@ const SearchResult=(props) => {
                         <Divider />
                         {closeSpellCheck&&spellCheckedSuggestion&&(
                             <div className='spell-check-div'>
-                                <h3>Did you mean "<span onClick={() => searchJobPosting(spellCheckedSuggestion)} className='spellCheckSuggestion'>{spellCheckedSuggestion}</span>"? Search instead for <span className='spellCheckSuggestion' onClick={() => searchJobPosting(searchQuery)}>{searchQuery}</span>".</h3>
+                                <h3>Did you mean "<span onClick={() => {
+                                    setSearchQuery(spellCheckedSuggestion);
+                                    searchJobPosting(spellCheckedSuggestion);
+                                }}
+                                    className='spellCheckSuggestion'>{spellCheckedSuggestion}</span>" ? Search instead for <span className='spellCheckSuggestion' onClick={() => {
+                                        setSearchQuery(searchQuery);
+                                        searchJobPosting(searchQuery)
+                                    }}>{searchQuery}</span>".</h3>
                             </div>
                         )}
                         {jobs.length<1? <Empty style={{marginTop: "100px"}} description={
