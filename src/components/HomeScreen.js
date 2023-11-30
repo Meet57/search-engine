@@ -1,18 +1,26 @@
 import React,{useState} from 'react';
 import {Button,Drawer,List} from 'antd';
-import {Layout,Input} from 'antd';
-import SearchBoxComponent from "./SearchBoxComponent";
+import {Layout} from 'antd';
 import '../styles/HomeScreen.css'
 import splash4 from '../assets/images/logo.png';
 import trending from '../assets/images/trending.svg';
 import SearchBar from './SearchBar';
+import {useEffect} from 'react';
+import {useAppState} from '../Context/GlobalContex';
 const {Content}=Layout;
 
 const HomeScreen=(props) => {
-    const {searchQuery,setSearchQuery}=props;
+
+    const {searchQuery,setSearchQuery,searchedBefore,setSearchedBefore}=useAppState();
 
     const [searchTermsDrawerVisible,setSearchTermsDrawerVisible]=useState(false);
     const [trendingWordsDrawerVisible,setTrendingWordsDrawerVisible]=useState(false);
+
+    // Set Searchedbefore to false while loading the homescreen
+    useEffect(() => {
+        setSearchQuery('');
+        setSearchedBefore(false);
+    },[])
 
     // Mock data for trending terms and words
     const trendingSearchTerms=['Software Engineer','Software Engineer Intern','Software Engineer Coop','Toronto'];
@@ -38,9 +46,7 @@ const HomeScreen=(props) => {
 
     return (
         <Layout style={{minHeight: '100vh',backgroundColor: 'white'}} >
-
-            <Content style={{display: 'flex',flexDirection: 'column',alignItems: 'center',marginTop: "160px"}}>
-
+            <Content className="home-screen-div">
                 <Drawer
                     title="Trending Search Terms"
                     placement="right"
@@ -59,7 +65,6 @@ const HomeScreen=(props) => {
                         </List.Item>}
                     />
                 </Drawer>
-
                 <Drawer
                     title="Trending Words with Frequency"
                     placement="right"
@@ -80,16 +85,18 @@ const HomeScreen=(props) => {
                 </Drawer>
                 <img
                     src={splash4}
+                    className='home-logo'
                     alt="Google Logo"
-                    style={{maxWidth: '700px'}}
+                    style={{maxWidth: '700px',width: '100%',height: 'auto'}}
                 />
+
                 <SearchBar
-                    clicked={props.clicked}
-                    setClicked={props.setClicked}
+                    width={"65%"}
+                    searchedBefore={searchedBefore}
+                    setSearchedBefore={setSearchedBefore}
                     searchQuery={searchQuery}
                     setSearchQuery={setSearchQuery}
                 />
-
                 <div className="trending-button">
                     <Button onClick={showSearchTermsDrawer}>
                         Trending Terms
@@ -98,12 +105,6 @@ const HomeScreen=(props) => {
                         Trending Words
                     </Button>
                 </div>
-                {/* <SearchBoxComponent
-                    width="60%"
-                    setClicked={props.setClicked}
-                    searchQuery={searchQuery}
-                    setSearchQuery={setSearchQuery}
-                /> */}
             </Content>
         </Layout>
     );

@@ -1,14 +1,37 @@
-.trending-button{
-    margin-top: 40px;
+/* Common styles for both desktop and mobile */
+.trending-button {
+    margin-top: 20px; /* Adjusted margin for better spacing on smaller screens */
     display: flex;
-    flex-direction: row;
-    gap:10px;
-    /* position: absolute;
-    top: 50px;
-    right: 50px; */
+    flex-direction: row; /* Changed to column for better stacking on smaller screens */
+    gap: 10px;
 }
-.trending-item{
-    display:flex;
-    gap:8px;
-    flex-direction: row;
+
+.trending-item {
+    display: flex;
+    flex-direction: row; /* Changed to column for better stacking on smaller screens */
+    gap: 8px;
+}
+
+.home-logo {
+    max-width: 100%;
+    height: auto; /* Allow the height to adjust proportionally */
+}
+
+/* Media query for iPhones (portrait) */
+@media only screen and (max-width: 700px) {
+    .trending-button {
+        margin-top: 40px; /* Adjusted margin for better spacing on smaller screens */
+        flex-direction: column; /* Adjusted to column layout for better stacking on smaller screens */
+        align-items: center; /* Center items on smaller screens */
+    }
+
+    .trending-button .ant-btn {
+        width: 100%; /* Make buttons fill the width on smaller screens */
+        margin-bottom: 10px; /* Add some bottom margin for better spacing */
+    }
+
+    .trending-item {
+        flex-direction: row; /* Adjusted to column layout for better stacking on smaller screens */
+        gap: 4px; /* Adjusted gap for better spacing on smaller screens */
+    }
 }
