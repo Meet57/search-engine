@@ -1,15 +1,16 @@
 // AppRouter.js
 import React from 'react';
-import {BrowserRouter as Router,Routes,Route} from 'react-router-dom';
-import App from './App';  // Check the path
-import AboutUsPage from './components/AboutUsPage';  // Check the path
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import App from './App';
 
-const AppRouter=() => {
+const AppRouter = () => {
     return (
         <Router>
             <Routes>
-                <Route path="/" element={<App />} />
-                <Route path="/about" element={<AboutUsPage />} />
+                <Route
+                    path='/'
+                    element={<App />}
+                />
             </Routes>
         </Router>
     );
