@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, Drawer, Space, Pagination, Card, Divider } from 'antd';
 import JobCardComponent from './JobCardComponent';
 import { useAppState } from '../Context/GlobalContex';
+import locationIcon from '../assets/images/location.svg';
 
 const JobWidgetsComponent = () => {
     const [open, setOpen] = useState(false);
@@ -94,10 +95,18 @@ const JobWidgetsComponent = () => {
                 }
             >
                 <Card>
-                    <h1>{drawerData.title}</h1>
+                    <h1 style={{ fontSize: '24px', fontWeight: '600' }}>
+                        {drawerData.title}
+                    </h1>
                     <Divider />
-                    <h1>{drawerData.company}</h1>
-                    <p>{drawerData.location}</p>
+                    <h1 style={{ fontSize: '16px', fontWeight: '600' }}>
+                        {drawerData.company}
+                    </h1>
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                        <p style={{ fontSize: '16px' }}>
+                            {drawerData.location}
+                        </p>
+                    </div>
                     <br />
                     <p>{drawerData.description}</p>
                 </Card>
