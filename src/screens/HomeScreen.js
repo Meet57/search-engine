@@ -51,7 +51,6 @@ const HomeScreen = (props) => {
             }
 
             const data = await response.json();
-            console.log(data);
             setTrendingWordsWithFrequency(data.wordFrequencyMap);
             seTrendingSearchTerms(data.termFrequencyMap);
         } catch (error) {
@@ -72,7 +71,7 @@ const HomeScreen = (props) => {
                     closable={true}
                     onClose={onClose}
                     closeIcon={false}
-                    visible={searchTermsDrawerVisible}
+                    open={searchTermsDrawerVisible}
                 >
                     <List
                         dataSource={trendingSearchTerms}
@@ -96,7 +95,7 @@ const HomeScreen = (props) => {
                     closable={true}
                     onClose={onClose}
                     closeIcon={false}
-                    visible={trendingWordsDrawerVisible}
+                    open={trendingWordsDrawerVisible}
                 >
                     <List
                         dataSource={Object.entries(trendingWordsWithFrequency)}
